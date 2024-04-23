@@ -14,7 +14,7 @@ public class TestBase {
     static WebDriver driver;
 
     @BeforeSuite
-    public  void init() {
+    public void init() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--lang=en");
         WebDriverManager.chromedriver().setup();
@@ -27,7 +27,7 @@ public class TestBase {
     }
 
     @AfterSuite
-    public  void tearDown() {
+    public void tearDown() {
         driver.quit();
     }
 }
