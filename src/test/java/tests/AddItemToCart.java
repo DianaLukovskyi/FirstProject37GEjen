@@ -1,57 +1,32 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-
 
 
 public class AddItemToCart extends TestBase {
 
     @Test
-    public void positiveRegisterTest() throws InterruptedException {
+    public void positiveRegisterTest()  {
 
-       driver.findElement(By.xpath("//a[@class='ico-login']")).click();
-       WebElement inputEmail = driver.findElement(By
-                .xpath("//input[@id='Email']"));
-        inputEmail.click();
-        inputEmail.clear();
-        inputEmail.sendKeys("feling@protonmail.com");
+        fillEmail("feling@protonmail.com");
 
-        WebElement inputPassword = driver.findElement(By
-                .xpath("//input[@id='Password']"));
-        inputPassword.click();
-        inputPassword.clear();
-        inputPassword.sendKeys("Karin2020@");
-        driver.findElement(By.xpath("//input[@class='button-1 login-button']")).click();
+        fillPassword("Karin2020@");
 
-       WebElement secondProduct = driver.findElement(By.xpath("(//input[@value='Add to cart'])[2]"));
-       secondProduct.click();
+        clickSeccondProduct();
 
 
-       driver.findElement(By.xpath("//a[@class='ico-cart']")).click();
-
-        WebElement shoppingCart = driver.findElement(By.xpath("(//td[@class='product-picture'])[1]"));
-
-        Thread.sleep(3000);
+        clickCare();
 
 
+        clickAShopingCart();
 
-
-
-
-
-
-
-
+        String actualRes = getElementProduct();
+        Assert.assertEquals(actualRes, "14.1-inch Laptop");
 
 
     }
+
 }
 
 

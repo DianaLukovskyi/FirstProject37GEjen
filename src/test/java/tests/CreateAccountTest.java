@@ -3,13 +3,9 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class CreateAccountTest extends TestBase {
-
 
 
     @Test
@@ -18,30 +14,26 @@ public class CreateAccountTest extends TestBase {
 
         driver.findElement(By.xpath("//a[@href='/register']")).click();
 
-        WebElement firstName = driver.findElement(By
-                .xpath("//input[@id='FirstName']"));
+        WebElement firstName = getElementFirstName();
+        firstName.click();
+        firstName.clear();
         firstName.sendKeys("Diana");
 
-        WebElement lastName = driver.findElement(By
-                .xpath("//input[@id='LastName']"));
+        WebElement lastName = getElementLastName();
+        lastName.click();
+        lastName.clear();
         lastName.sendKeys("Lukovsky");
 
-
-        WebElement inputEmail = driver.findElement(By
-                .xpath("//input[@id='Email']"));
+        WebElement inputEmail = getElementInputEmail();
         inputEmail.click();
         inputEmail.clear();
         inputEmail.sendKeys("feling@protonmail.com");
 
-        WebElement inputPassword = driver.findElement(By
-                .xpath("//input[@id='Password']"));
-        inputPassword.click();
-        inputPassword.clear();
+        WebElement inputPassword = clickPassword();
         inputPassword.sendKeys("Karin2020@");
 
 
-        WebElement confirmPassword = driver.findElement(By
-                .xpath("//input[@id='ConfirmPassword']"));
+        WebElement confirmPassword = getElementConfirmPassword();
         confirmPassword.click();
         confirmPassword.clear();
         confirmPassword.sendKeys("Karin2020@");
@@ -49,9 +41,8 @@ public class CreateAccountTest extends TestBase {
 
         driver.findElement(By.xpath("//input[@id='register-button']")).click();
 
-        WebElement signOutBtn = driver.findElement(By.xpath("//div[@class='result')]")
-        );
-        String actualRes = signOutBtn.getText().trim();
+        WebElement signOutBtn = getElementSignOutBtn();
+        String actualRes = getTexBase(signOutBtn);
         System.out.println(actualRes);
 
 
@@ -59,4 +50,5 @@ public class CreateAccountTest extends TestBase {
 
 
     }
+
 }
