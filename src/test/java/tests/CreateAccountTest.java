@@ -1,54 +1,63 @@
 package tests;
 
-import org.openqa.selenium.By;
+
+import config.ApplicationManager;
+import dto.UserDTO;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class CreateAccountTest extends TestBase {
 
+    public void preConditions() {
+        app.getItemCartHelper().navigateToHomePage();
+
+        app.getItemCartHelper().clickOnLoginNavBar();
+
+        UserDTO user = new UserDTO().setEmail("feling@protomail.com").setPassword("Karin2020@");
+
+    }
 
     @Test
-    public void positiveRegisterTest() {
-        driver.navigate().to("https://demowebshop.tricentis.com/");
+    public void positiveRegisterTest() throws InterruptedException {
 
-        driver.findElement(By.xpath("//a[@href='/register']")).click();
-
-        WebElement firstName = getElementFirstName();
+        WebElement firstName = app.getUserHelper().getElementLastName();
         firstName.click();
         firstName.clear();
         firstName.sendKeys("Diana");
 
-        WebElement lastName = getElementLastName();
+        WebElement lastName =app.getUserHelper().getElementLastName();
         lastName.click();
         lastName.clear();
         lastName.sendKeys("Lukovsky");
 
-        WebElement inputEmail = getElementInputEmail();
+        WebElement inputEmail = app.getUserHelper().getElementInputEmail();
         inputEmail.click();
         inputEmail.clear();
         inputEmail.sendKeys("feling@protonmail.com");
 
-        WebElement inputPassword = clickPassword();
+        WebElement inputPassword = app.getUserHelper().getElementInputPassword();
+        inputPassword.click();
+        inputPassword.clear();
         inputPassword.sendKeys("Karin2020@");
 
 
-        WebElement confirmPassword = getElementConfirmPassword();
+        WebElement confirmPassword = app.getUserHelper().getElementConfirmPassword();
         confirmPassword.click();
         confirmPassword.clear();
         confirmPassword.sendKeys("Karin2020@");
 
+        Thread.sleep(3000);
 
-        driver.findElement(By.xpath("//input[@id='register-button']")).click();
+        app.getUserHelper().clickAddRegisterBtn();
 
-        WebElement signOutBtn = getElementSignOutBtn();
-        String actualRes = getTexBase(signOutBtn);
-        System.out.println(actualRes);
-
-
-        Assert.assertEquals(actualRes, "Sign Out");
-
-
+        WebElement resultMessage = app.getItemCartHelper().getResultMessage();
+        Assert.assertTrue(resultMessage.isDisplayed(), "Your registration completed");
     }
 
 }
+
+
+
+
+

@@ -1,31 +1,42 @@
 package tests;
 
+import dto.UserDTO;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
 public class AddItemToCart extends TestBase {
+    @BeforeClass
+    public void preCondition() {
+
+        app.getItemCartHelper();
+        UserDTO user = new UserDTO().setEmail("feling@protomail.com").setPassword("Karin2020@");
+
+
+    }
+
 
     @Test
-    public void positiveRegisterTest()  {
-
-        fillEmail("feling@protonmail.com");
-
-        fillPassword("Karin2020@");
-
-        clickSeccondProduct();
+    public void addProductToCart() throws InterruptedException {
 
 
-        clickCare();
+        app.getUserHelper().clickAddToCart();
 
 
-        clickAShopingCart();
+        app.getUserHelper().clickOnTheSecondProductBtn();
 
-        String actualRes = getElementProduct();
+
+        app.getUserHelper().clickOnTheProductPicture();
+
+;
+        WebElement actualRes = app.getItemCartHelper().getTextBase();
         Assert.assertEquals(actualRes, "14.1-inch Laptop");
 
 
     }
+
 
 }
 
