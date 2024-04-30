@@ -14,24 +14,24 @@ public class AddItemToCart extends TestBase {
     @Test
     public void loginAndAddToCart() throws InterruptedException {
 
-        String mail = "feling@protonmail.com";
-        String password = "Karin2020@";
-        UserDTO user = new UserDTO().setMail("feling@protonmail.com").setPassword("Karin2020@");
+
         login(user);
-
         clickSeccondProduct();
-
-
         clickOnTheProduct();
-
         clickOnTheProductName();
-
-        Thread.sleep(3000);
-
+        pause(3000);
 
         String actualRes = getTextBase();
         Assert.assertEquals(actualRes, "14.1-inch Laptop");
 
+    }
+
+    public void pause( int time) {
+        try {
+            Thread.sleep(time);
+        }catch(InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getTextBase() {
@@ -41,3 +41,5 @@ public class AddItemToCart extends TestBase {
     }
 
 }
+
+

@@ -1,5 +1,6 @@
 package tests;
 
+import dto.ContactDTO;
 import dto.UserDTO;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -15,7 +16,7 @@ import java.time.Duration;
 public class TestBase {
 
     public static WebDriver driver;
-
+    UserDTO user = new UserDTO().setMail("feling@protonmail.com").setPassword("Karin2020@");
     @BeforeSuite
     public void init() {
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -28,7 +29,10 @@ public class TestBase {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         driver.navigate().to("https://demowebshop.tricentis.com/");
     }
-
+    @AfterSuite
+    public void tearDown() {
+        driver.quit();
+    }
     public void clickOnRegisterBtn() {
         driver.findElement(By.xpath("//input[@id='register-button']")).click();
     }
@@ -77,20 +81,17 @@ public class TestBase {
         driver.findElement(By.xpath("//a[@href='/register']")).click();
     }
 
-    public void register(String name, String lastname, String email, String password) {
+    public void register(ContactDTO contactDTO) {
         registrationBtn();
-        firstName(name);
-        lastName(lastname);
-        email(email);
-        password(password);
+        firstName(contactDTO.getName());
+        lastName(contactDTO.getLastname());
+        email(contactDTO.getEmail());
+        password(contactDTO.getPassword());
         createPassword();
         clickOnRegisterBtn();
     }
 
-    @AfterSuite
-    public void tearDown() {
-        driver.quit();
-    }
+
 
     public void clickOnTheProductName() {
         WebElement shoppingCart = driver.findElement(By.xpath("(//td[@class='product-picture'])[1]"));
@@ -120,3 +121,5 @@ public class TestBase {
         loginPassword(user.getPassword());
     }
 }
+
+

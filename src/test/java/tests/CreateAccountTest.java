@@ -1,6 +1,6 @@
 package tests;
 
-import dto.UserDTO;
+import dto.ContactDTO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -25,12 +25,11 @@ public class CreateAccountTest extends TestBase {
     @Test
     public void positiveRegisterTest() {
 
-        String name = "Diana";
-        String lastname = "Lukovsky";
-        String email = "feling@protonmail.com";
-        String password = "Karin2020@";
-
-        register(name, lastname, email, password);
+        ContactDTO contactDTO = new ContactDTO()
+                .setName("Diana")
+                .setLastname("Lukovsky")
+                .setEmail("feling@protonmail.com")
+                .setPassword("Karin2020@");
 
 
         WebElement successMessage = getTextBase();
