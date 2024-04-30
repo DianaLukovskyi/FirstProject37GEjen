@@ -1,17 +1,18 @@
 package dto;
 
 public class UserDTO {
-    UserDTO user = new UserDTO().setEmail("feling@protomail.com").setPassword("Karin2020@");
-
-    String email;
+    String mail;
     String password;
 
-    public String getEmail() {
-        return email;
+    public UserDTO() {
     }
 
-    public dto.UserDTO setEmail(String email) {
-        this.email = email;
+    public String getMail() {
+        return mail;
+    }
+
+    public UserDTO setMail(String mail) {
+        this.mail = mail;
         return this;
     }
 
@@ -19,11 +20,10 @@ public class UserDTO {
         return password;
     }
 
-    public dto.UserDTO setPassword(String password) {
+    public UserDTO setPassword(String password) {
         this.password = password;
         return this;
-
-
     }
 }
+
 
