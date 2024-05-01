@@ -1,10 +1,13 @@
 package dto;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 public class ContactDTO {
-    private  String name;
-    private  String lastname;
-    private  String email;
-    private  String password;
+    private String name;
+    private String lastname;
+    private String email;
+    private String password;
+
 
 
     public ContactDTO() {
@@ -46,4 +49,13 @@ public class ContactDTO {
     public String getPassword() {
         return password;
     }
-}
+
+
+
+
+
+
+    }
+
+
+

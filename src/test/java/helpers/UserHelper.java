@@ -2,24 +2,68 @@ package helpers;
 
 import config.ApplicationManager;
 import dto.ContactDTO;
-import dto.UserDTO;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+
 
 public class UserHelper extends BaseHelper {
     public UserHelper(WebDriver driver) {
         super(driver);
     }
 
+    By registerBtn = By.xpath("//input[@id='register-button']");
+    By firstRegistrationButton = By.xpath("//a[@href='/register']");
+    By laptopPicture = By.xpath("(//td[@class='product-picture'])[1]");
+    By productBtn = By.xpath("//a[@class='ico-cart']");
+    By secondProductBtn = By.xpath("(//input[@value='Add to cart'])[2]");
+    By loginPassword = By.xpath("//input[@class='button-1 login-button']");
+    By loginEmail = By.xpath("//a[@class='ico-login']");
+    By text = By.xpath("//a[@class='product-name']");
+
     public void clickOnRegisterBtn() {
-       driver.findElement(By.xpath("//input[@id='register-button']")).click();
+        clickBase(registerBtn);
+
+    }
+    protected void clickBase(By by){
+        findElementBase(by).click();
+
     }
 
+    public void registrationBtn() {
+        findElementBase(firstRegistrationButton).click();
+    }
+
+    public void register(ContactDTO contactDTO) {
+        registrationBtn();
+        firstName(contactDTO.getName());
+        lastName(contactDTO.getLastname());
+        email(contactDTO.getEmail());
+        password(contactDTO.getPassword());
+        createPassword();
+        clickOnRegisterBtn();
+    }
+
+
+    public void clickOnTheProductName() {
+        findElementBase(laptopPicture);
+    }
+
+    public void clickOnTheProduct() {
+        findElementBase(productBtn).click();
+    }
+
+    public void clickSeccondProduct() { findElementBase(secondProductBtn).click();
+
+
+    }
+
+
     public void createPassword() {
-        WebElement confirmPassword = driver.findElement(By
-                .xpath("//input[@id='ConfirmPassword']"));
+        By createPassword = By
+                .xpath("//input[@id='ConfirmPassword']");
+        WebElement confirmPassword = driver.findElement(createPassword);
         confirmPassword.click();
         confirmPassword.clear();
         confirmPassword.sendKeys("Karin2020@");
@@ -57,43 +101,22 @@ public class UserHelper extends BaseHelper {
         firstName.sendKeys(name);
     }
 
-    public void registrationBtn() {
-        driver.findElement(By.xpath("//a[@href='/register']")).click();
-    }
 
-    public void register(ContactDTO contactDTO) {
-        registrationBtn();
-        firstName(contactDTO.getName());
-        lastName(contactDTO.getLastname());
-        email(contactDTO.getEmail());
-        password(contactDTO.getPassword());
-        createPassword();
-        clickOnRegisterBtn();
-    }
-
-
-
-    public void clickOnTheProductName() {
-        WebElement shoppingCart = driver.findElement(By.xpath("(//td[@class='product-picture'])[1]"));
-    }
-
-    public void clickOnTheProduct() {
-        driver.findElement(By.xpath("//a[@class='ico-cart']")).click();
-    }
-
-    public void clickSeccondProduct() {
-        WebElement secondProduct =driver.findElement(By.xpath("(//input[@value='Add to cart'])[2]"));
-        secondProduct.click();
-    }
 
     public void loginPassword(String password) {
         password(password);
-        driver.findElement(By.xpath("//input[@class='button-1 login-button']")).click();
+        findElementBase(loginPassword).click();
+
     }
 
     public void loginEmail(String email) {
-       driver.findElement(By.xpath("//a[@class='ico-login']")).click();
+       findElementBase(loginEmail).click();
         email(email);
+    }
+    public String getTextBase() {
+        WebElement product = driver.findElement(text);
+        String actualRes = product.getText();
+        return actualRes;
     }
 
 }

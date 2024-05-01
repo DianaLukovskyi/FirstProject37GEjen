@@ -16,10 +16,7 @@ public class CreateAccountTest extends TestBase {
     public void setUp() {
         app.getHomePageHelper().navigateBar();
 
-
     }
-
-
 
 
     @Test
@@ -30,6 +27,7 @@ public class CreateAccountTest extends TestBase {
                 .setLastname("Lukovsky")
                 .setEmail("feling@protonmail.com")
                 .setPassword("Karin2020@");
+
 
 
         WebElement successMessage = getTextBase();

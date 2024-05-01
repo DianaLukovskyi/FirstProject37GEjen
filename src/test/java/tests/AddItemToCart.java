@@ -1,8 +1,4 @@
 package tests;
-import config.ApplicationManager;
-import dto.UserDTO;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,7 +10,7 @@ public class AddItemToCart extends TestBase {
     public void preCondition() {
         login(user);
 
-        }
+    }
 
         @Test
         public void loginAndAddToCart() throws InterruptedException {
@@ -24,15 +20,11 @@ public class AddItemToCart extends TestBase {
             app.getUserHelper().clickOnTheProductName();
             app.getHomePageHelper().pause(3000);
 
-            String actualRes = getTextBase();
+            String actualRes = app.getUserHelper().getTextBase();
             Assert.assertEquals(actualRes, "14.1-inch Laptop");
 
         }
 
-        public String getTextBase() {
-            WebElement product = ApplicationManager.getDriver().findElement(By.xpath("//a[@class='product-name']"));
-            String actualRes = product.getText();
-            return actualRes;
-        }
+
 
     }
