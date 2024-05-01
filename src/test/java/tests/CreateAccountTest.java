@@ -1,5 +1,6 @@
 package tests;
 
+import config.ApplicationManager;
 import dto.ContactDTO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,14 +14,13 @@ public class CreateAccountTest extends TestBase {
 
     @BeforeClass
     public void setUp() {
-        navigateBar();
+        app.getHomePageHelper().navigateBar();
 
 
     }
 
-    public void navigateBar() {
-        driver.navigate().to("https://demowebshop.tricentis.com/");
-    }
+
+
 
     @Test
     public void positiveRegisterTest() {
@@ -38,13 +38,13 @@ public class CreateAccountTest extends TestBase {
     }
 
     public WebElement getTextBase() {
-        return driver.findElement(By.xpath("//div[contains(@class,'result')]"));
+        return ApplicationManager.getDriver().findElement(By.xpath("//div[contains(@class,'result')]"));
 
     }
 
     @AfterClass
-    public void tearDown() {
-        driver.quit();
+     public static void tearDown() {
+        app.quit();
     }
 
 }
