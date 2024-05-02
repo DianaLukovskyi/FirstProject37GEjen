@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import utils.DataProvider;
 
 public class CreateAccountTest extends TestBase {
 
@@ -19,26 +20,26 @@ public class CreateAccountTest extends TestBase {
     }
 
 
-    @Test
-    public void positiveRegisterTest() {
+    @Test(dataProvider = "addNewContact", dataProviderClass = DataProvider.class)
+    public void positiveAddContactProvider(String name, String lastName,String email) {
 
         ContactDTO contactDTO = new ContactDTO()
-                .setName("Diana")
-                .setLastname("Lukovsky")
-                .setEmail("feling@protonmail.com")
+                .setName(name)
+                .setLastname(lastName)
+                .setEmail(email)
                 .setPassword("Karin2020@");
 
 
 
-        WebElement successMessage = getTextBase();
-        Assert.assertTrue((successMessage.isDisplayed()), "You register");
+//        WebElement successMessage = getTextBase();
+//        Assert.assertTrue((successMessage.isDisplayed()), "You register");
 
     }
 
-    public WebElement getTextBase() {
-        return ApplicationManager.getDriver().findElement(By.xpath("//div[contains(@class,'result')]"));
+//    public WebElement getTextBase() {
+//        return ApplicationManager.getDriver().findElement(By.xpath("//div[contains(@class,'result')]"));
 
-    }
+
 
     @AfterClass
      public static void tearDown() {

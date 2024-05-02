@@ -1,6 +1,5 @@
 package config;
 
-import helpers.ContactHelper;
 import helpers.HomePageHelper;
 import helpers.UserHelper;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -18,13 +17,11 @@ public class ApplicationManager {
 
     static WebDriver driver;
     String browser;
-    ContactHelper contactHelper;
+
     HomePageHelper homePageHelper;
     UserHelper userHelper;
 
-    public ContactHelper getContactHelper() {
-        return contactHelper;
-    }
+
 
     public HomePageHelper getHomePageHelper() {
         return homePageHelper;
@@ -65,7 +62,7 @@ public class ApplicationManager {
         driver.navigate().to("https://demowebshop.tricentis.com/");
 
         // init helpers
-        contactHelper = new ContactHelper(driver);
+
         homePageHelper = new HomePageHelper(driver);
         userHelper = new UserHelper(driver);
     }
