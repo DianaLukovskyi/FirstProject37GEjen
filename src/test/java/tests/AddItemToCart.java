@@ -1,4 +1,5 @@
 package tests;
+import dto.UserDTO;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -8,11 +9,13 @@ public class AddItemToCart extends TestBase {
 
     @BeforeClass
     public void preCondition() {
-        login(user);
+        app.getUserHelper().login(user);
 
     }
 
-        @Test
+
+
+    @Test
         public void loginAndAddToCart() throws InterruptedException {
 
             app.getUserHelper().clickSeccondProduct();

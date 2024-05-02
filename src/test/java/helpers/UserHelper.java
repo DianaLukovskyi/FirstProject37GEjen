@@ -3,6 +3,7 @@ package helpers;
 import config.ApplicationManager;
 import dto.ContactDTO;
 
+import dto.UserDTO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -119,6 +120,8 @@ public class UserHelper extends BaseHelper {
         return actualRes;
     }
 
+    public void login(UserDTO user) {
+    }
 }
 
 
